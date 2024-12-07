@@ -38,7 +38,7 @@ def prob1(pos,dir,lin):
 
     return(res)
 
-# print(prob1(orgpos,dir,lines))
+print(prob1(orgpos,dir,lines))
 
 def prob2(orgpos,lin):
     lines = copy.deepcopy(lin)
