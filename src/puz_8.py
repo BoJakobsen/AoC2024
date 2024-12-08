@@ -36,7 +36,7 @@ def prob1():
                 ants.add(ant2)
     return len(ants)
 
-#print(prob1())
+print(prob1())
 
 def prob2():
     ants=set()
