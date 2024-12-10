@@ -13,7 +13,6 @@ def baseloader(filename):
         lines = [(x.strip()) for x in f]
     return lines
 
-
 # Nice for working with tuples representing coordinates
 def tupadd(a, b):
     res = tuple(map(lambda i, j: i + j, a, b))
