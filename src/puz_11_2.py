@@ -1,4 +1,4 @@
-# Day 11, Problem 2
+# Day 11, Problem 1 and 2
 
 # advance 25 blinks and return the new list
 def advance(dat):
@@ -39,7 +39,7 @@ for aa in range(3):
         dict[kk] = (unique2, cnt2)
         dat1 += unique2
 
-# check first solution
+# Problem 1
 res = 0
 for aa in dat0:
     a,b = dict[aa]
