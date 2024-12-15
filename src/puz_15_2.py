@@ -66,7 +66,7 @@ for move in moves: #['v','v','v','v']:
     dir = dirs[move]
 
 
-    # DBS based search thing based on the idea of Neil
+    # BFS based search thing based on the idea of Neil
     q = deque([])
     seen = set()
     q.appendleft(pos)
