@@ -8,6 +8,9 @@ import re
 from collections import defaultdict
 from collections import deque
 
+from functools import cache 
+# add @cache before eg recursive functions, very efficient. 
+
 import copy
 
 # basic loader
