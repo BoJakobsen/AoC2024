@@ -57,9 +57,9 @@ def part1():
         c = nc
     print(res)
 
-#part1()
+part1()
 
-def part2):
+def part2():
     res = 0
     CheatMin = 100 # lest ammound we need to save
     CheatLength = 20 
@@ -75,6 +75,7 @@ def part2):
 
     print(res)
 
+part2()
         
 #for l in ma:
 #    print(*l)
