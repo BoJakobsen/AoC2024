@@ -13,6 +13,9 @@ from functools import cache
 
 import copy
 
+
+import networkx as nx # for graphs
+
 # basic loader
 def baseloader(filename):
     with open(filename) as f:
@@ -46,6 +49,16 @@ def maptodict(lines, basechar):
                     pos[char] = set()
                     pos[char].add((ll, cc))
     return pos
+
+
+## from day 23,  finde the maximal clique in a graph
+#G = nx.Graph()
+#for line in lines:
+#    a ,b = line.split('-')
+#    G.add_edge(a,b)
+#','.join(sorted(max(nx.find_cliques(G), key=len)))
+
+
 
 
 # Links to other AoC resources

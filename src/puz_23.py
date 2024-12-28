@@ -1,5 +1,6 @@
 from functools import cache 
 from collections import defaultdict
+import networkx as nx
 import copy
 with open('../data/23.dat') as f:
     lines = [(x.strip()) for x in f]
@@ -70,8 +71,19 @@ def BronKerbosch1(R, P, X):
 p = set(lan.keys())
 r = set()
 x = set()
-BronKerbosch1(r,p,x)
-
+#BronKerbosch1(r,p,x)
 # THIS is too slow it seems,
-# Looking at some solutions, a recursive ting should work here also
-# and https://networkx.org can do it directly. 
+
+
+# Looking at web some solutions, a recursive ting should work here also
+
+# An nice library also exists,
+# and https://networkx.org which can do it directly.
+
+G = nx.Graph()
+for line in lines:
+    a ,b = line.split('-')
+    G.add_edge(a,b)
+
+','.join(sorted(max(nx.find_cliques(G), key=len)))
+
