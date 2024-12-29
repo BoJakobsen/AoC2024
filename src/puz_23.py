@@ -34,23 +34,10 @@ def part1():
             find_leafs(nodes,0)
     print(len(sets))
 
-#part1()
+part1()
 
-
-
-# node = 'co'
-# #b = lan[node].append(node)
-# b = set(lan[node])
-# b.add(node)
-# for n in lan[node]:
-#     c = set(lan[n])
-#     c.add(n)
-#     print(c)
-#     print(b)
-
-#     b = b.intersection(c)
-
-# This must be an exampel of finding all maximal cliques in an undirected graph    
+# Part 2
+# This is an example of finding all maximal cliques in an undirected graph    
 # Bron–Kerbosch algorithm is an enumeration algorithm for this
 # https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm
 
@@ -75,7 +62,6 @@ x = set()
 # THIS is too slow it seems,
 
 
-# Looking at web some solutions, a recursive ting should work here also
 
 # An nice library also exists,
 # and https://networkx.org which can do it directly.
@@ -85,5 +71,39 @@ for line in lines:
     a ,b = line.split('-')
     G.add_edge(a,b)
 
-','.join(sorted(max(nx.find_cliques(G), key=len)))
+print(','.join(sorted(max(nx.find_cliques(G), key=len))))
+# Work, but maybe not the most fun solution.
+
+
+## Inspiret by Hyperneutrinos youtube solution
+#  Second try on a recursive solution
+
+# Make a map of the lan, this time a set to avoided converting back an forward to sets 
+lan = defaultdict(set)
+for line in lines:
+    a ,b = line.split('-')
+    lan[a].add(b)
+    lan[b].add(a)
+
+    
+# global set of Cliques to be populated and used in the recursion 
+cliques = set()
+
+def find_cliques(node,cliq):
+    c = tuple(sorted(cliq))  # Ordered tuple of current cliq
+    if c in cliques: return  # if this is one we already have seen, return
+    cliques.add(tuple(sorted(cliq)))  # else add to total list and process children
+    for child in lan[node]:
+        if child in cliq: continue # This node is already in the cliq set
+        if all([c in lan[child] for c in cliq]): # child is connected to all in cliq
+            find_cliques(child, {*cliq, child})
+
+
+# Now loop all nodes and find all cliques
+for node in lan.keys():
+    find_cliques(node,{node})
+# Works but is much slower than the NetworkX lib function (nu surprise)
+
+# find the longest tuple, (max using len as "key"), is already sorted
+print(','.join(max(cliques, key = len)))
 
