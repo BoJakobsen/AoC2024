@@ -54,6 +54,8 @@ print(dist) # works
 
 # Part 2
 # Modified Dijkstra's algorithm, tracing all routes and storing parents
+# Notice, this is not an "optimal" implementation, see Hyper Neutrino for some tricks.
+
 
 # priority queue
 Q = []
