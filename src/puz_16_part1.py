@@ -1,16 +1,23 @@
 import math
-with open("../data/16.dat") as f:
+with open("../data/16_test.dat") as f:
     ma = [list((x.strip())) for x in f]
 
 nl = len(ma)
 nc = len(ma[0])
+
+
+for l in ma:
+    print(*l)
+
+
+#  Dijkstra's algorithm
 
 dist = {}
 orien= {}
 prev = {}
 Q = {}
 
-# find start point
+# find start point, and populate dictionaries for the algorithm.
 for l in range(nl):
     for c in range(nc):
         if ma[l][c] == 'S':
@@ -33,17 +40,14 @@ for l in range(nl):
 
 dirs = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-for l in ma:
-    print(*l)
-
 while len(Q) > 0:
     u = min(Q, key = Q.get)
     Q.pop(u)
-    if u == end0: break
+    #if u == end0: break  # for part 2 we want to explore everything
     for dir in dirs:
         v = tupadd(u,dir)
         if v in Q: # still a valid direction
-            if orien[u] == dir:
+            if orien[u] == dir:  # test if we are continuing same direction 
                 alt = dist[u] + 1
             else:
                 alt = dist[u] + 1 + 1000
@@ -52,20 +56,15 @@ while len(Q) > 0:
                 Q[v] = alt
                 prev[v] = u
                 orien[v] = dir
-        
-S= []
-D= []
+
+#  Backtrack the solution
+S = []
+D = []
 u = end0
-while u == u: # very strange way to test for nan
+while u == u:  # very strange way to test for nan
     S.append(u)
     D.append(orien[u])
     u = prev[u]
 
-res = 0
-lastD=D[0]
-for kk in range(1,len(D)):
-    if D[kk] != lastD:
-        res += 1000
-    lastD=D[kk]
-res += len(S)-1
-print(res)
+# Calculate answer for part 1 
+print(dist[end0])
