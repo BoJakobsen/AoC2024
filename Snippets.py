@@ -16,6 +16,9 @@ from collections import deque
 
 #import networkx as nx # for graphs, is a large library
 
+# import heapq  # for priority queue in e.g.  Dijkstra's algorithm
+
+
     
 ##  Some functions 
 
